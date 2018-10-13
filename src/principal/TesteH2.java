@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testeh2;
+package principal;
 
 import modelo.User;
 import persistencia.UserDAO;
