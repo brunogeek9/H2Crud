@@ -9,33 +9,21 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import persistencia.Conexao;
 
 /**
  *
  * @author jamelli
  */
 public class CriandoBanco {
-     // JDBC driver name and database URL 
-   static final String JDBC_DRIVER = "org.h2.Driver";   
-   static final String DB_URL = "jdbc:h2:~/novo";  
-   
-   //  Database credentials 
-   static final String USER = "sa"; 
-   static final String PASS = ""; 
-   
    public static void main(String[] args) throws ClassNotFoundException { 
-      Connection conn = null; 
-      Statement stmt = null; 
+     Conexao c = new Conexao();
+     c.conecta();
+     Connection conn = c.getConexao();
+     Statement stmt = null;  
       try { 
-         // STEP 1: Register JDBC driver 
-         Class.forName(JDBC_DRIVER); 
-             
-         //STEP 2: Open a connection 
-         System.out.println("Connecting to database..."); 
-         conn = DriverManager.getConnection(DB_URL,USER,PASS);  
-         
-         //STEP 3: Execute a query 
-         System.out.println("Creating table in given database..."); 
+         //Executando a query 
+         System.out.println("Criando uma tabela em um banco existente ..."); 
          stmt = conn.createStatement(); 
          String sql =  "CREATE TABLE   User " + 
             "(id INTEGER not NULL auto_increment, " + 
@@ -44,9 +32,8 @@ public class CriandoBanco {
             " age INTEGER, " +  
             " PRIMARY KEY ( id ))";  
          stmt.executeUpdate(sql);
-         System.out.println("Created table in given database..."); 
+         System.out.println("Tabela criada ..."); 
          
-         // STEP 4: Clean-up environment 
          stmt.close(); 
          conn.close(); 
       } catch(SQLException se) { 

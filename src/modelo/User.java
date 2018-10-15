@@ -50,6 +50,20 @@ public class User {
         this.first = first;
         this.last = last;
     }
+
+    public User(int id, int age, String first, String last) {
+        this.id = id;
+        this.age = age;
+        this.first = first;
+        this.last = last;
+    }
+    
     public User(){}
+
+    @Override
+    public String toString() {
+        //return "User{" + "id=" + id + ", age=" + age + ", first=" + first + ", last=" + last + '}';
+        return  id + " | " + age + " | " + first + " | " + last;
+    }
     
 }
