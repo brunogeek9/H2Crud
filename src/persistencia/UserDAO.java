@@ -19,7 +19,6 @@ import modelo.User;
  * @author jamelli
  */
 public class UserDAO implements DAO{
-    //private ConnectionDatabase con = new ConnectionDatabase();
     private Conexao con = new Conexao();
     //Strings sql criadas fora para facilitar a organização do código
     private final String INSERT = "INSERT INTO User (first, last, age) " + "VALUES (?, ?, ?);";
@@ -36,7 +35,6 @@ public class UserDAO implements DAO{
         con.conecta();
         try {
             PreparedStatement pst = con.getConexao().prepareStatement(INSERT);
-            //pst.setInt(1, u.getId());
             pst.setString(1, u.getFirst());
             pst.setString(2, u.getLast());
             pst.setInt(3, u.getAge());
